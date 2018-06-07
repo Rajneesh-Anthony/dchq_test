@@ -1,0 +1,139 @@
+@font-face {
+    font-family: 'RobotoRegular';
+    src: url('../fonts/RobotoRegular.eot');
+    src: url('../fonts/RobotoRegular.eot') format('embedded-opentype'),
+         url('../fonts/RobotoRegular.woff2') format('woff2'),
+         url('../fonts/RobotoRegular.woff') format('woff'),
+         url('../fonts/RobotoRegular.ttf') format('truetype'),
+         url('../fonts/RobotoRegular.svg#RobotoRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('../fonts/RobotoLight.eot');
+    src: url('../fonts/RobotoLight.eot') format('embedded-opentype'),
+         url('../fonts/RobotoLight.woff2') format('woff2'),
+         url('../fonts/RobotoLight.woff') format('woff'),
+         url('../fonts/RobotoLight.ttf') format('truetype'),
+         url('../fonts/RobotoLight.svg#RobotoLight') format('svg');
+}
+
+@font-face {
+    font-family: 'RobotoBold';
+    src: url('../fonts/RobotoBold.eot');
+    src: url('../fonts/RobotoBold.eot') format('embedded-opentype'),
+         url('../fonts/RobotoBold.woff2') format('woff2'),
+         url('../fonts/RobotoBold.woff') format('woff'),
+         url('../fonts/RobotoBold.ttf') format('truetype'),
+         url('../fonts/RobotoBold.svg#RobotoBold') format('svg');
+}
+
+
+
+body{font-family: 'RobotoRegular'; background:#f0f0f0; color:#999; font-size:13px;}
+h2{font-family: 'RobotoBold'; font-size:26px; line-height:30px; margin:0 0 20px;}
+.btn-primary{border-radius:5px; padding:9px 20px; text-align:center;font-family: 'RobotoRegular'; border:0;}
+.btn-blue{background:#3c59a8; color:#fff;}
+.btn-blue:hover{background:#30498d;}
+.btn-gray{background:#4c4c4c; color:#fff;}
+.btn-gray:hover{background:#3a3a3a;}
+.heading{color:#336699; position:relative; display:inline-block}
+.heading:after{position:absolute;content:""; bottom:-10px; left:0; width:100%; height:1px; background: #336699}
+.form{margin-top:15px;}
+.form .form-control{border-radius:5px; height:38px;}
+
+
+
+.select-style {
+    border: 1px solid #d5d5d5;
+    width: 100%;
+    border-radius:5px;
+    overflow: hidden;
+    background: #fafafa url("../images/icon-select.png") no-repeat 95% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 112%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+	margin:0;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+
+/*--- calender-carousal ---*/
+.calender-carousal{border:1px solid #d5d5d5;background:#fff; padding:0 50px;}
+.date-container{padding:23px 0 23px 22px; float:left; width:100%; position:relative; cursor:pointer;}
+.date-container.active{background:#3c59a8;}
+.date{font-family: 'RobotoLight'; font-size:32px; color:#333;float:left;}
+.month-day{float:left; padding:9px 0 0 2px}
+.month-day h5{color:#333; font-size:12px; margin:0;}
+.month-day h6{color:#bababa; font-size:11px; margin:2px 0 0;}
+.date-container.active h5, .date-container.active h6, .date-container.active div{color:#fff;}
+.date-container.active:after{ content: '';
+    position: absolute;
+    left: 42%;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #3c59a8;
+    clear: both;}
+
+.calender-carousal .owl-theme .owl-nav [class*="owl-"]{background:none; border:1px solid #c7c7c7; border-radius:50%; width:25px; height:25px; position:absolute; top:36%;}
+.calender-carousal .owl-theme .owl-nav .owl-prev{ background:url(../images/icon-prev-arrow.png) center center no-repeat; left:-35px;}
+.calender-carousal .owl-theme .owl-nav .owl-next{ background:url(../images/icon-next-arrow.png) center center no-repeat; right:-35px;}
+.calender-carousal .owl-nav{margin:0;}
+/*--- Carousal End ---*/
+
+/*--- Accordion Classess ---*/
+.table-accordion{border-radius:3px; border:1px solid #d5d5d5; margin-top:30px; overflow:hidden;}
+.table-accordion .table{margin:0;}
+.table-accordion .table th{background:#3c59a8;color:#fff; border:0;}
+.table-accordion .table td, .table-accordion .table th{padding:25px; font-size:14px;}
+.clickrow td{color:#4c4c4c;background:#fff; cursor:pointer;}
+.clickrow.active td{color:#3c59a8; background:#f2f2f2 !important; padding-bottom:0;}
+.clickrow td:last-child{color:#4c4c4c}
+.clickrow i.icon-plus{background:url(../images/icon-plus-accordion.png) center center no-repeat; width:15px; height:15px; display:inline-block; margin:3px 10px 0 0; float:left;}
+.clickrow.active i.icon-plus{background:url(../images/icon-minus-accordion.png) center center no-repeat;}
+.panel{background:#f2f2f2;transition: background .3s ease;}
+.panel td{border-top:0 !important; padding-top:15px !important;}
+/*.rowdetail.active{display:table-row;}*/
+
+.table-accordion .table .rowdetail td{padding-bottom:15px !important;}
+.table-accordion .table .rowdetail td{padding:0 30px; border:0;}
+.panel .img-thumbnail{border-radius:0; padding:1px;}
+
+.button-wrapper{margin-top:15px;}
+.button-wrapper .btn{margin-right:10px;}
+
+.detail-wrapper{width:100%; position:relative;}
+.detail-wrapper .left-image{position:absolute; left:22px; top:0;}
+.detail-wrapper .divcontent{margin-left:26.3%;}
+
+/* 19-06-2017 */
+.calender-carousal { display: inline-block; width: 100%;}
+.owl-carousel{ display: inline-block; float: left;}
+.owl-carousel .item {   float: left;   width: 14.2%;}
+h6.half_day {display:none;}
+
+.divcontent > p.active {
+    height: auto;
+}
+.divcontent > p {
+    overflow: hidden;
+    transition: all 0.5s ease-in-out 0s;
+    height: 50px
+}
+.left-image.event_img img {
+  height: 105px;
+  width: 105px;
+}

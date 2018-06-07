@@ -1,0 +1,1 @@
+(function(){$(function(){var e;return e=$("#xero-individual"),"individual"===$("#store_xero_attributes_integration_type").val()?e.show():e.hide(),$("#store_xero_attributes_integration_type").on("change",function(){return"individual"===$(this).val()?e.show():e.hide()})})}).call(this);

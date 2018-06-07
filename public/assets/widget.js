@@ -1,0 +1,1 @@
+(function(){var e;e="https://dchqx01.herokuapp.com/events/widget?public_key="+public_key,document.write("<iframe frameborder="+border+" width="+width+" height="+height+" src="+e+">")}).call(this);

@@ -1,0 +1,1 @@
+(function(){$(function(){return $("#tag_list").length>0?$("#tag_list").make_as_taggable("#supplier_tag_list"):void 0})}).call(this);

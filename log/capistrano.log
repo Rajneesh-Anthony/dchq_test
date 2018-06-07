@@ -1,0 +1,16 @@
+# Logfile created on 2018-04-20 12:25:25 +0000 by logger.rb/47272
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-04-20 12:25:25 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [65fb762f] Running [ -d $HOME/.rbenv/versions/2.2.4 ] as deploy@127.0.0.1
+ DEBUG [65fb762f] Command: [ -d $HOME/.rbenv/versions/2.2.4 ]
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-04-20 12:25:36 +0000 cap production
+  INFO ---------------------------------------------------------------------------
+ DEBUG [c0c85d5d] Running [ -d $HOME/.rbenv/versions/2.2.4 ] as deploy@127.0.0.1
+ DEBUG [c0c85d5d] Command: [ -d $HOME/.rbenv/versions/2.2.4 ]
+  INFO ---------------------------------------------------------------------------
+  INFO START 2018-04-20 12:26:14 +0000 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [578a8ee3] Running [ -d $HOME/.rbenv/versions/2.2.4 ] as deploy@127.0.0.1
+ DEBUG [578a8ee3] Command: [ -d $HOME/.rbenv/versions/2.2.4 ]

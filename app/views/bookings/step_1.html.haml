@@ -1,0 +1,138 @@
+:ruby
+  @event_customer_participant ||= @ecp
+  @event.distance_in_days.times{ @event_customer_participant.event_customer_participant_transports.build } if @event_customer_participant.event_customer_participant_transports.blank?
+  @current_store.additionals.each_with_index{@event_customer_participant.event_customer_participant_additionals.build} if @event_customer_participant.event_customer_participant_additionals.blank?
+  kit_hire = @event_customer_participant.event_customer_participant_kit_hire || @event_customer_participant.build_event_customer_participant_kit_hire
+  insurance = @event_customer_participant.event_customer_participant_insurance || @event_customer_participant.build_event_customer_participant_insurance
+
+%ul.breadcrumb
+  %li
+    = link_to root_path, class: 'glyphicons home' do
+      %i
+      = t('.home')
+  %li.divider
+  %li= t('.event_rigistration')
+
+.innerLR
+  .row-fluid
+    .span8
+      %h3.heading-mosaic= t('.registration_step_1')
+
+.innerLR
+  .row-fluid.row-merge
+    = simple_nested_form_for @event_customer_participant, url: step_2_bookings_path, html: { class: 'nice ecp_form' } do |f|
+      = f.error_messages
+      = hidden_field_tag :public_key, @current_store.public_key
+      = hidden_field_tag :event_id, @event.id
+      %p= t('.information_step_1')
+      .row-fluid
+        .span9
+          .widget
+            .widget-head
+              %h4.heading.coing.glyphicons.parents
+                = t('.customer_information')
+                %i
+            .widget-body
+              .row-fluid
+                .span6
+                  %label= t('.email_address')
+                  = text_field_tag :customer_email, '', class: 'span11'
+              .row-fluid
+                .span6
+                  %p.help-block
+                    = t('.if_new_customer')
+                    %br
+                    = succeed "." do
+                      = link_to t('.registration_firts'), '#booking-add-customer-modal', :'data-toggle' => 'modal'
+              .row-fluid
+                .span4
+                  = button_tag 'Next', id: 'check-cert-for-step1', class: 'btn btn-info btn-block js-accepted_cancellation_button'
+
+              #certificate
+          #step1_next_form
+            - if @event.type == "OtherEvent"
+              .widget
+                .widget-head
+                  %h4.heading.glyphicons.paperclip
+                    = t('.equipment')
+                    %i
+                .widget-body
+                  .row-fluid
+                    .span3
+                      %p.muted= t('.equipment_text')
+                    .span4
+                      - if @current_store.kit_hires.any? or true
+                        = f.simple_fields_for :event_customer_participant_kit_hire, kit_hire do |kh_form|
+                          = kh_form.association :kit_hire, collection: @current_store.kit_hires, input_html: { style: 'overflow: visible', class: 'select2 span12', id: 'kit_hire_select' }
+                    .span5
+
+
+            .widget
+              .widget-head
+                %h4.heading.glyphicons.coins
+                  = t('.payment')
+                  %i
+              .widget-body
+                .payment-errors
+                .row-fluid
+                %hr
+                .row-fluid
+                  .span8
+                    %label
+                      %input{type: 'checkbox', class: 'js-accepted_cancellation_checkbox'}
+                      I have read, understood and accept the
+                      = link_to 'cancellation policy', '/BOAT DIVE CANCELLATION POLICY.docx'
+                      set forth by Dive Spear and Sport.
+                %hr/
+                .row-fluid.js-need_accept_container
+                  .span5
+
+                    %label
+                      %input{type: 'checkbox', class: 'js-need_accept_checkbox'}
+                      I have read, understood and accept the
+                      %a{href: '/Diving Terms and Conditions for bookings 2017.docx'}
+                        terms and conditions
+                      set forth by Dive Spear and Sport
+                  .span3
+                    - if @current_company.set_paypal?
+                      %button{ type: 'submit', value: :paypal, name: :button, style: 'border: none; background: white', class: 'js-need_accept', disabled: 'true' }
+                        = image_tag "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"
+                  .span4
+
+        .span3
+          .widget
+            = render 'event_customer_participants/price_breakdown'
+          .clearfix
+
+
+= content_for :overlays do
+  = render 'overlays/bookings/add_customer_modal'
+
+= content_for :js do
+  :javascript
+    $(document).ready(function() {
+      $('#step1_next_form').hide()
+      $('.js-need_accept').css('opacity', 0.5).css('cursor', 'not-allowed');
+      $('.js-need_accept_checkbox').prop('disabled', true)
+      $(document).on('change', '.js-need_accept_checkbox', function() {
+        if(this.checked && !this.disabled) {
+          console.log('.js-need_accept_checkbox was checked');
+          $(this).parents('.js-need_accept_container').find('.js-need_accept').prop('disabled', false).css('opacity', 1).css('cursor', 'pointer');
+        }
+        else {
+          console.log('.js-need_accept_checkbox was unchecked');
+          $(this).parents('.js-need_accept_container').find('.js-need_accept').prop('disabled', true).css('opacity', 0.5).css('cursor', 'not-allowed');
+        }
+      })
+
+      $(document).on('change', '.js-accepted_cancellation_checkbox', function() {
+        if(this.checked) {
+          $('.js-need_accept_checkbox').prop('disabled', false).trigger('change')
+          //$('#check-cert-for-step1').show();
+        }
+        else {
+          $('.js-need_accept_checkbox').prop('disabled', true).trigger('change')
+          //$('#step1_next_form').hide();
+        }
+      })
+    });

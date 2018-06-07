@@ -1,0 +1,30 @@
+= render 'header', title: t('events.index.event_calendar')
+
+.container
+  .row
+    .col-md-12
+      / %h2.heading Online Schedule
+  .row.form
+    .col-sm-3.col-sm-offset-6
+      .form-group
+        %label CATEGORY
+        .select-style
+          %select.form-control.type_select
+            %option All
+            %option{:value => "course"} Course
+            %option{:value => "event"} Event
+      / .col-sm-3
+      / .form-group
+      /   %label SUB-CATEGORY
+      /   .select-style
+      /     %select.form-control.cat_select
+      /       %option All
+    .col-sm-3.col-sm-offset-0
+      .form-group
+        %label TIME
+        .select-style
+          %select.form-control.ampm_select
+            %option{:value => "weekly"} Weekly
+
+  -# (1..4).each do |week|
+  = render 'calendar_event'

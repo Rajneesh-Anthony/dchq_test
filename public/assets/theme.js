@@ -1,0 +1,1 @@
+(function(){$(function(){"undefined"!=typeof charts&&charts.initIndex(),Modernizr.touch})}).call(this);

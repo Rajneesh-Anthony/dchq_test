@@ -1,0 +1,137 @@
+
+-# (1..4).each do |week|
+
+- min = 0
+- max = 6
+- week = 1
+- total_weeks = (@day_end  > 7) ? 4 : 1
+
+.calendar_div{:style => "\n    margin-left: 5%;\n    margin-right: 5%;\n"}
+
+  - start_date = @start_date
+  - end_date = @end_date
+  %input{:type=>"hidden", :value=> start_date  , :id=>'start_date'}
+  %input{:type=>"hidden", :value=> end_date  , :id=> 'end_date'}
+  - while week <= total_weeks do
+    .row
+      .col-md-12.date_strip
+        .calender-carousal
+          .owl-carousel.owl-theme
+            - day_number = 1
+
+            -# @dates.each do |v|
+
+            - from_range = min
+            - to_range = max
+
+            - for index in from_range..to_range
+              - #date_pattern = v.strftime("%Y%m%d")
+              -if week == 1 and index == 0
+                %div{:class=>"scroller scroller-left"}
+                  %i.glyphicon.glyphicon-chevron-left
+
+
+              %div{:class => "item", :id => "day_#{index+1}"}
+                .date-container
+                  .date
+                    =@dates[index].strftime("%d")
+                  .month-day
+                    - month = @dates[index].strftime("%b")
+                    - full_day_name = @dates[index].strftime("%A")
+                    - half_day_name = @dates[index].strftime("%a")
+                    %h5= month
+                    %h6.full_day= full_day_name
+                    %h6.half_day= half_day_name
+              - day_number += 1
+
+              -if week == 1 and index == 6
+                %div{:class=>"scroller scroller-right"}
+                  %i.glyphicon.glyphicon-chevron-right
+                - week +=1
+                - from_range = to_range+1
+                - to_range = from_range + 6
+
+    .row
+      - day_number = 1
+      - public_key =  @public_key[:public_key]
+      -# @events_listing.each do |v|
+      - from_range = min
+      - to_range = max
+      - for index in from_range..to_range
+
+        %div{:class => "col-sm-12 event_content day_#{index+1} hidden"}
+          .table-accordion
+            %table.table
+              %thead
+                %tr
+                  %th{:width => "25%"} COURSE/EVENT
+                  %th LOCATION
+                  %th START TIME
+                  %th.hidden-xs END TIME
+                  %th.hidden-xs DURATION
+                  %th.hidden-xs AVAILABILITY
+              %tbody
+                - if @events_listing[index].present?
+                  - @events_listing[index].each do |e|
+                    - id = e[:id]
+                    - location = e[:location]
+                    - image = e[:image]
+                    - starts_at = e[:starts_at].strftime("%I : %M %p")
+                    - ampm = e[:starts_at].strftime("%p")
+                    - event_type = e[:event_type_id]
+                    - ends_at = e[:ends_at].strftime("%I : %M %p")
+                    - time_diff = ((e[:ends_at] - e[:starts_at]) / 1.hour) * 60 *60
+                    - hours = Time.at(time_diff).utc.strftime("%H:%M H")
+                    - description = e.event_description.present? ? e.event_description.description : e[:description]
+                    - enable_booking = e[:enable_booking]
+                    - if enable_booking == true
+                      - enable_booking = 'Booking Open'
+                    - else
+                      - enable_booking = 'Booking Open'
+                    %tr.clickrow{:ampm => ampm,:event_type => event_type}
+                      %td
+                        %i.icon-plus
+                        = e[:name]
+                      %td= location
+                      %td= starts_at
+                      %td.hidden-xs= ends_at
+                      %td.hidden-xs= hours
+                      %td.hidden-xs= enable_booking
+                    %tr.panel{:style => "display:none"}
+                      %td{:colspan => "6"}
+                        .detail-wrapper
+                          .left-image.event_img
+                            %a{ href: "/events/#{id}", title: "Meet the Team" }
+
+                              -# - if image
+
+                              -# - if image
+
+                                - if event_type == 2
+                                  =image_tag  e.image.thumb.url
+                                - else
+                                  =image_tag e.image.thumb.url
+
+                              -# - else
+                                = image_tag asset_path("noimagefound.jpg")
+                          .divcontent
+                            %p.active= description
+                            .button-wrapper
+                              -# %a.btn.btn-default.btn-primary.btn-blue{:href => "javascript:void(0)"} Find Out More
+                              %a.btn.btn-default.btn-primary.btn-gray{:href => "/bookings/step_1.html?event_id=#{id}&public_key=#{public_key}"} Book Now
+
+                - else
+                  -# = image_tag asset_path("noimagefound.jpg")
+                  %tr.text-center
+                    %td
+                      %h2 No Event Found
+
+
+
+    - from_range = to_range+1
+    - to_range = from_range + 6
+    - day_number += 1
+
+    -min = max +1
+    -max = min + 6
+    %br

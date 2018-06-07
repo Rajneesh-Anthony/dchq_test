@@ -1,0 +1,1 @@
+(function(){this.module=function(e,t){var i,n;return"string"==typeof e&&(e=e.split(".")),i=this[n=e.shift()]||(this[n]={}),i.module||(i.module=this.module),e.length?i.module(e,t):t.call(i)}}).call(this);
