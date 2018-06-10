@@ -9,8 +9,7 @@ class Customer < ActiveRecord::Base
 
   pg_search_scope :search, against: [:given_name, :family_name],
                            using: {
-                             tsearch: {prefix: true, any_word: true },
-                             trigram: { } }
+                             tsearch: {prefix: true, any_word: true } }
 
   belongs_to :company
   belongs_to :customer_experience_level

@@ -43,7 +43,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def image
-    h.image_tag model.avatar.image(:large)
+    h.image_tag model.avatar.image(:large) if model.logo.present?
   end
 
   def full_address

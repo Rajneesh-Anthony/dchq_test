@@ -6,7 +6,7 @@ class SupplierDecorator < Draper::Decorator
   end
 
   def image
-    h.image_tag(model.logo.image(:large))
+    h.image_tag(model.logo.image(:large)) if model.logo.present?
   end
 
   def address

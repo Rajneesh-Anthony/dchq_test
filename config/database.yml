@@ -7,7 +7,7 @@ defaults: &defaults
   host: localhost
 
 development:
-  database: dchqone_development
+  database: dchqone_development_new
   <<: *defaults
 
 test: &test

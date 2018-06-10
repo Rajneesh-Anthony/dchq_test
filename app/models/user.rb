@@ -11,9 +11,8 @@ class User < ActiveRecord::Base
 
   pg_search_scope :search, against: [:given_name, :family_name],
                            using: {
-                             tsearch: {prefix: true, any_word: true },
-                             trigram: { } },
-                           ignoring: :accents
+                             tsearch: {prefix: true, any_word: true }}#,
+                           #ignoring: :accents
   has_paper_trail
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,

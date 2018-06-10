@@ -23,7 +23,7 @@ class CustomerDecorator < Draper::Decorator
   end
 
   def image
-    h.image_tag(model.avatar.image(:large))
+    h.image_tag(model.avatar.image(:large)) if model.logo.present?
   end
 
   def last_dive_on

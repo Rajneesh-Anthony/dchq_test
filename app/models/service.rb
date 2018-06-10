@@ -6,9 +6,8 @@ class Service < ActiveRecord::Base
 
   pg_search_scope :search, against: [:kit, :serial_number, :barcode],
                            using: {
-                             tsearch: {prefix: true, any_word: true },
-                             trigram: { } },
-                           ignoring: :accents
+                             tsearch: {prefix: true, any_word: true }}#,
+                           #ignoring: :accents
 
   acts_as_taggable
   has_paper_trail

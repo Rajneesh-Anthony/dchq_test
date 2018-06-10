@@ -3,9 +3,8 @@ class Supplier < ActiveRecord::Base
 
   pg_search_scope :search, against: [:name],
                            using: {
-                             tsearch: {prefix: true, any_word: true },
-                             trigram: { } },
-                           ignoring: :accents
+                             tsearch: {prefix: true, any_word: true }}#,
+                           #ignoring: :accents
 
   acts_as_taggable
   acts_as_paranoid
