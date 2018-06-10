@@ -15,7 +15,7 @@ class StoreProductDecorator < Draper::Decorator
   end
 
   def image
-    h.image_tag(model.logo.image(:original))
+    h.image_tag(model.logo.image(:original)) if model.logo.present?
   end
 
   def no_commission_rate?
