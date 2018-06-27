@@ -23,6 +23,6 @@ show_hide_trips_select = ->
   if $('#other_event_event_type_id :selected').text() is 'Trip'
     $('#other_event_event_trip_id').closest('.span3').fadeIn 500
   else
-    $("#other_event_price").val('')
+    /* $("#other_event_price").val('') */
     $('#other_event_event_trip_id').selectpicker('val', '').closest('.span3').fadeOut 500
 
