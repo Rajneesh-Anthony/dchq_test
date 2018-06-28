@@ -106,7 +106,8 @@ class Xero
     xero_invoice = client.Invoice.build(invoice.xero_attributes(status))
     begin
       invoice.update_attributes(
-        sent: true,
+        # sent: true,
+        sended: true,
         xero_invoice_id: xero_invoice.id,
         xero_url: "https://go.xero.com/AccountsReceivable/Edit.aspx?InvoiceID=#{xero_invoice.id}"
       ) if xero_invoice.save
