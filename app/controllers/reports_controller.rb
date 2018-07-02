@@ -46,9 +46,12 @@ class ReportsController < InheritedResources::Base
         financial_reports_reports_path,
         notice: "#{@finance_report.invoice? ? 'Invoice' : 'Credit'} changed successfully"
       ) if @finance_report.errors.blank?
-      render action: :edit_finance_report unless @finance_report.errors.blank?
+      # render action: :edit_finance_report unless @finance_report.errors.blank?
+
+      redirect_to(edit_finance_report_reports_path(:id => params[:id]), alert: @finance_report.errors.full_messages.join(", ")) unless @finance_report.errors.blank?
     else
-      render action: :edit_finance_report
+      # render action: :edit_finance_report
+      redirect_to(edit_finance_report_reports_path(:id => params[:id]), alert: @finance_report.errors.full_messages.join(", ")) unless @finance_report.errors.blank?
     end
   end
 

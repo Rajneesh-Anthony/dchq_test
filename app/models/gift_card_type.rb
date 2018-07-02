@@ -5,9 +5,9 @@ class GiftCardType < ActiveRecord::Base
 
   pg_search_scope :search, against: [:name],
                            using: {
-                             tsearch: {prefix: true, any_word: true },
-                             trigram: { } },
-                           ignoring: :accents
+                             tsearch: {prefix: true, any_word: true }  } #,
+                           #  trigram: { } } ,
+                           # ignoring: :accents
   has_paper_trail
 
   attr_accessible :value, :can_sold, :valid_for

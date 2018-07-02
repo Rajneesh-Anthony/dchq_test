@@ -7,9 +7,9 @@ class CertificationLevel < ActiveRecord::Base
 
   pg_search_scope :search, against: [:full_name],
                            using: {
-                             tsearch: {prefix: true, any_word: true },
-                             trigram: { } },
-                           ignoring: :accents
+                             tsearch: {prefix: true, any_word: true } } #,
+                             # trigram: { } },
+                           # ignoring: :accents
   has_paper_trail
 
   has_one :company, through: :store
