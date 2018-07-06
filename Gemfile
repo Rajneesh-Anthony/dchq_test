@@ -13,10 +13,24 @@ gem 'barby'#, github: 'kaktusyaka/barby'
 gem 'best_in_place'
 gem 'bootbox-rails'
 gem 'bootstrap-datepicker-rails'
-gem 'capistrano', '~> 3.7', '>= 3.7.1'
-gem 'capistrano-rails', '~> 1.2'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rbenv', '~> 2.1'
+group :production do
+	gem 'capistrano' #, '~> 3.7', '>= 3.7.1'
+	gem 'capistrano-rvm'
+	gem 'capistrano-rails' #, '~> 1.2'
+	gem 'capistrano-passenger', '~> 0.2.0'
+	gem 'capistrano-bundler'
+	gem 'capistrano3-puma'
+	gem 'capistrano-rbenv', '~> 2.1'
+end
+
+group :development do
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
+end
+
 gem 'cancan'
 gem 'client_side_validations', github: 'bcardarella/client_side_validations', branch: '3-2-stable'
 gem 'client_side_validations-simple_form'

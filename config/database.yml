@@ -2,12 +2,12 @@ defaults: &defaults
   adapter: postgresql
   # database: dchq_dss
   username: postgres
-  password: rajneesh
+  password: iteron01 
   encoding: utf8
   host: localhost
 
 development:
-  database: dchqone_development
+  database: ddchq_27062018
   <<: *defaults
 
 test: &test
@@ -15,5 +15,5 @@ test: &test
   <<: *defaults
 
 production:
-  database: dchqone_dss
+  database: ddchq_27062018
   <<: *defaults
